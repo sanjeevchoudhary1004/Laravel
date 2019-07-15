@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>The XMLHttpRequest Object</h2>
+<input type="text" name="name" id="name"/><br/><br/>
+<button type="button" onclick="loadDoc()">Request data</button>
+<p id="demo"></p>
+<script>
+function loadDoc() {
+var name=document.getElementById('name').value;
+if (window.XMLHttpRequest) {
+// code for modern browsers
+obj = new XMLHttpRequest();
+} 
+else {
+// code for IE6, IE5
+obj = new ActiveXObject("Microsoft.XMLHTTP");
+}
+obj.open("POST", "r2.php", true);
+obj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+obj.send("fname="+name);
+obj.onreadystatechange = function() {
+if (obj.readyState == 4) {
+document.getElementById("demo").innerHTML = this.responseText;
+}
+};
+}
+</script>
+</body>
+</html>

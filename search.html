@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search by Ajax</title>
+</head>
+<body>
+	<h1>Search By Ajax</h1>
+     <input type="text" name="searchstr" id="searchstr" placeholder="Search by name" onkeyup="get_names();"/>
+<div id="result"></div>
+</body>
+</html>
+
+<script>
+function get_names()
+{
+var name=document.getElementById('searchstr').value;
+if(name!="")
+{
+if(window.XMLHttpRequest)
+var obj=new XMLHttpRequest; //for modern browsers
+else
+var obj=new ActiveXobject('Microsoft.XMLHTTP'); //for IE
+obj.open('GET','get_search_str.php?name='+name,true);
+obj.send();
+obj.onreadystatechange=function(){
+if(obj.readyState==4){
+document.getElementById('result').innerHTML=obj.responseText;
+}
+}
+}
+else
+{
+document.getElementById('result').innerHTML="";
+}
+}
+</script>

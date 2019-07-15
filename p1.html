@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajax Example</title>
+</head>
+<body>
+	<p id="result"></p>
+	<input type="button" name="send" value="Send" onclick="ajaxtest();">
+	<!--Ajax code-->
+	<script type="text/javascript">
+		function ajaxtest(){
+			if(window.XMLHttpRequest)//Stage 1
+				var obj=new XMLHttpRequest;
+			else
+				var obj=new ActiveXobject("Microsoft.XMLHTTP");
+			obj.open("GET","p2.php",true);//Stage 2
+			obj.send();//Stage 3
+			obj.onreadystatechange=function(){
+				if(obj.readyState==4)
+					document.getElementById('result').innerHTML=obj.responseText;
+			}
+		}
+	</script>
+
+</body>
+</html>
